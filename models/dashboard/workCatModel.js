@@ -17,15 +17,15 @@ async function index() {
     });
 }
 
-async function show(id) {
-    return new Promise((resolve, reject) => {
-        connection.query("SELECT * FROM banner WHERE id=?", [id], (error, result) => {
-            if(!error) {
-                resolve(result);
-            }
-        })
-    });
-}
+// async function show(id) {
+//     return new Promise((resolve, reject) => {
+//         connection.query("SELECT * FROM banner WHERE id=?", [id], (error, result) => {
+//             if(!error) {
+//                 resolve(result);
+//             }
+//         })
+//     });
+// }
 
 async function store(createFormData) {
     const catName = createFormData.catName;
@@ -79,7 +79,7 @@ async function destroy(id) {
 
 module.exports = {
     index,
-    show,
+    // show,
     store,
     updateForm,
     update,

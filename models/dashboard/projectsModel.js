@@ -44,36 +44,6 @@ async function createForm() {
         })
     });
 }
-// async function createForm() {
-//     return new Promise((resolve, reject) => {
-//         // First SELECT query
-//         const query1 = "SELECT catName FROM workcat ORDER BY id ASC";
-//         connection.query(query1, [catName], (error1, result1) => {
-//             if (error1) {
-//                 reject(error1);
-//                 return;
-//             }
-//             resolve({ categories: { result1 } });
-
-//             // Second SELECT query
-//             const query2 = "SELECT * FROM projectsclasses ORDER BY title DESC";
-//             connection.query(query2, [], (error2, result2) => {
-//                 if (error2) {
-//                     reject(error2);
-//                     return;
-//                 }
-
-//                 // Combine the results or handle them as needed
-//                 const combinedResults = {
-//                     result1,
-//                     result2,
-//                 };
-
-//                 resolve(combinedResults);
-//             });
-//         });
-//     });
-// }
 
 async function store(createFormData) {
     const title = createFormData.title;
@@ -106,16 +76,6 @@ async function store(createFormData) {
     });
 }
 
-
-// async function updateForm(id) {
-//     return new Promise((resolve, reject) => {
-//         connection.query("SELECT * FROM banner WHERE id=?", [id], (error, result) => {
-//             if(!error) {
-//                 resolve(result);
-//             }
-//         })
-//     });
-// }
 async function updateForm(id) {
     return new Promise((resolve, reject) => {
         connection.query("SELECT workproj.id, workproj.title, workproj.description, workproj.photo, GROUP_CONCAT(workcat.catName SEPARATOR ' ') AS categories " +
@@ -168,44 +128,6 @@ async function update(updateFormData) {
 }
 
 
-
-// async function update(updateFormData) {
-//     const id = updateFormData.id;
-//     console.log("ID Type:", typeof id);
-
-//     const title = updateFormData.title;
-//     const details = updateFormData.details;
-//     const photo = updateFormData.photo;
-
-//     let updateSQL, updatedFields;
-
-//     if (photo !== "") {
-//         updateSQL = "UPDATE banner SET title=?, details=?, photo=? WHERE id=?";
-//         updatedFields = [title, details, photo, id];
-//         console.log("Update SQL:", updateSQL);
-//         console.log("Updated Fields:", updatedFields);
-//     } else {
-//         updateSQL = "UPDATE banner SET title=?, details=? WHERE id=?";
-//         updatedFields = [title, details, id];
-//         console.log("Update SQL:", updateSQL);
-//         console.log("Updated Fields:", updatedFields);
-//     }
-
-//     return new Promise((resolve, reject) => {
-//         connection.query(updateSQL, updatedFields, (error, result) => {
-//             console.error("Error in SQL query:", error);
-
-//             if (error) {
-//                 reject(error);  // Reject the promise with the error
-//             } else {
-//                 console.log("Update Result:", result);
-
-//                 resolve(result);  // Resolve the promise with the result
-//             }
-//         });
-//     });
-// }
-
 async function destroy(id) {
     return new Promise((resolve, reject) => {
         // Delete project and related entries in workcatproj
@@ -231,15 +153,6 @@ async function destroy(id) {
         });
     });
 }
-// async function destroy(id) {
-//     return new Promise((resolve, reject) => {
-//         connection.query("DELETE FROM banner WHERE id=?", [id], (error, result) => {
-//             if(error) {
-//                 return res.json({ err: error});
-//             }
-//         })
-//     });
-// }
 
 module.exports = {
     index,

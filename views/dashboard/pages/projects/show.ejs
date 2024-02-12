@@ -1,4 +1,4 @@
-<%- include('../../partials/headerLayout.ejs', {pageName: "projects" , pageTitle: "Banner Page" , pathLevel: "/" }) %>
+<%- include('../../partials/headerLayout.ejs', {pageName: "projects" , pageTitle: "Show Project" , pathLevel: "/" }) %>
 
     <%if(oneProject.length> 0) {%>
         <div class="col py-3">
@@ -10,7 +10,6 @@
                             <li class="breadcrumb-item"><a href="/dashboard/projects">Projects</a></li>
                             <li class="breadcrumb-item active">
                                 <%= oneProject[0].title %>
-                                <% console.log(oneProject[0]) %>
                             </li>
                         </ol>
                     </nav>
