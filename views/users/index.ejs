@@ -346,12 +346,13 @@
                 <% projects.forEach((oneProject) => { %>
 
                     <div class="portfolio-item <%=oneProject.categories%>">
+                        <% console.log(oneProject.categories); %>
                         <div class="portfolio-item-inner">
                             <img class="img-responsive" src="uploads/<%=oneProject.photo%>" alt="">
                             <div class="portfolio-info">
                                 <h3><%= oneProject.title %></h3>
                                 <%= oneProject.description %>
-                                <a class="preview" href="uploads/<%=oneProject.photo%>" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
+                                <a class="preview" href="" rel="prettyPhoto"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
