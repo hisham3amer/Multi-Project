@@ -1,0 +1,53 @@
+<%- include('../../partials/headerLayout.ejs', {pageName: "banner", pageTitle: "Add Slide", pathLevel: "/"}) %>
+
+<div class="col ms-3 mt-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/dashboard/banner">Banner</a></li>
+            <li class="breadcrumb-item active">Add New Slide</li>
+        </ol>
+    </nav>
+</div>
+<form action="/dashboard/banner/createForm/store" method="post" enctype="multipart/form-data" class="mx-3">
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="" placeholder="Title"
+                required>
+        </div>
+    </div>
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="details">Details</label>
+            <input type="text" class="form-control" id="details" name="details" value="" placeholder="Details" required>
+        </div>
+    </div>
+    <div class="row form-group mb-4 align-items-center">
+        <div class="col">
+            <input type="file" name="photo" id="photo" onchange="photoPreviewFn(this);">
+        </div>
+        <div class="col">
+            <img src="" id="photoPreview" alt="photo preview" style="max-width: 55%;">
+        </div>
+    </div>
+    <div class="form-group mb-4">
+        <button type="submit" class="btn btn-primary">Add Slide</button>
+    </div>
+</form>
+
+<script>
+    function photoPreviewFn(inputFile) {
+        var file = inputFile.files[0];
+        if(file) {
+            var reader = new FileReader();
+            reader.onload = () => {
+                document.getElementById("photoPreview").setAttribute("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+
+<%- include('../../partials/footerLayout.ejs', { pathLevel : "/"}) %>

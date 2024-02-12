@@ -1,0 +1,53 @@
+<%- include('../../partials/headerLayout.ejs', {pageName: "banner" , pageTitle: "Banner Page" , pathLevel: "/" }) %>
+
+    <%if(oneSlide.length> 0) {%>
+        <div class="col py-3">
+            <div class=" container-fluid row">
+                <div class="col">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/dashboard/banner">Banner</a></li>
+                            <li class="breadcrumb-item active">
+                                <%= oneSlide[0].title %>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col text-end fw-lighter">
+                    <b>SlideId:</b>
+                    <%= oneSlide[0].id %>
+                </div>
+            </div>
+        </div>
+        <ul class="list-group mx-4">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col" style="max-width: 140px"> <b>Title:</b></div>
+                    <div class="col">
+                        <%= oneSlide[0].title %>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col" style="max-width: 140px"> <b>Details:</b></div>
+                    <div class="col">
+                        <%= oneSlide[0].details %>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col " style="max-width: 140px"> <b>Slide Image:</b></div>
+                    <div class="col">
+                        <img src="../../../uploads/<%=oneSlide[0].photo%>" height="150" alt="">
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <%} else {%>
+            <h3>No slides with this information !!!</h3>
+            <%}%>
+
+                <%- include('../../partials/footerLayout.ejs', { pathLevel : "/" }) %>

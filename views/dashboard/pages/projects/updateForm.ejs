@@ -1,0 +1,62 @@
+<%- include('../../partials/headerLayout.ejs', {pageName: "projects", pageTitle: "Update Project", pathLevel: "/"}) %>
+
+<div class="col ms-3 mt-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/dashboard/projects">Projects</a></li>
+            <li class="breadcrumb-item active">Update Project</li>
+        </ol>
+    </nav>
+</div>
+<form action="/dashboard/projects/updateForm/update/<%= oneProject.id %>?_method=PUT" method="post" enctype="multipart/form-data" class="mx-3">
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="title">Project Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= oneProject.title %>" placeholder="Project Title" required>
+        </div>
+    </div>
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="description">Project Description</label>
+            <input type="text" class="form-control" id="description" name="description" value="<%= oneProject.description %>" placeholder="Project Description" required>
+        </div>
+    </div>
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="catName">Project Category</label>
+            <select name="catName" id="catName" required class="form-select" aria-label="Default select example">
+                <option selected disabled>Select Category</option>
+                <% categories.forEach(onecategory => { %>
+                    <option value="<%= onecategory.catName %>" <%= (oneProject.categories.includes(onecategory.catName)) ? 'selected' : '' %>><%= onecategory.catName %></option>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <div class="row form-group mb-4 align-items-center">
+        <div class="col">
+            <input type="file" name="photo" id="photo" onchange="photoPreviewFn(this);">
+        </div>
+        <div class="col">
+            <img src="/uploads/<%= oneProject.photo %>" id="photoPreview" alt="photo preview" style="max-width: 55%;">
+        </div>
+    </div>
+    <div class="form-group mb-4">
+        <button type="submit" class="btn btn-primary">Update Project</button>
+    </div>
+</form>
+
+<script>
+    function photoPreviewFn(inputFile) {
+        var file = inputFile.files[0];
+        if(file) {
+            var reader = new FileReader();
+            reader.onload = () => {
+                document.getElementById("photoPreview").setAttribute("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+<%- include('../../partials/footerLayout.ejs', { pathLevel : "/"}) %>

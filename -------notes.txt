@@ -1,0 +1,8 @@
+
+- complete banner crud over dashboard
+
+- our works
+    - category crud
+    - projects crud 
+        *** category to project is one-to-many relationship / project crud <select> ==> category
+
