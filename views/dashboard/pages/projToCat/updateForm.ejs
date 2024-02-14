@@ -1,0 +1,50 @@
+<%- include('../../partials/headerLayout.ejs', {pageName: "projToCat", pageTitle: "Update Relationship", pathLevel: "/"}) %>
+
+<div class="col ms-3 mt-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/dashboard/workCategories">Project to Cat</a></li>
+            <li class="breadcrumb-item active">Update Relationship</li>
+        </ol>
+    </nav>
+</div>
+<form action="/dashboard/projToCat/updateForm/update/<%= workcatproj[0].relId %>?_method=PUT" method="post" enctype="application/x-www-form-urlencoded" class="mx-4">
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="title">Project Title</label>
+            <select name="title" id="title" required class="form-select" aria-label="Default select example">
+                <option disabled>Select Project</option>
+                <% workproj.forEach(oneProject => { %>
+                    <% if(workcatproj[0].title == oneProject.title) {%>
+                    <option selected value="<%= oneProject.projectId %>"><%= oneProject.title %></option>
+                    <% }else{  %>
+                        <option value="<%= oneProject.projectId %>"><%= oneProject.title %></option>
+                        <% } %>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="catName">Project Category</label>
+            <select name="catName" id="catName" required class="form-select" aria-label="Default select example">
+                <option  disabled>Select Category</option>
+                <% workcat.forEach(onecategory => { %>
+                    <% if(workcatproj[0].catName == onecategory.catName) {%>
+                    <option selected value="<%= onecategory.categoryId %>"><%= onecategory.catName %></option>
+                    <% }else{  %>
+                        <option  value="<%= onecategory.categoryId %>"><%= onecategory.catName %></option>
+                        <% } %>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <input type="hidden" name="relId" value="<%= workcatproj[0].relId %>">
+
+    <div class="form-group mb-4">
+        <button type="submit" class="btn btn-primary">Update Relationship</button>
+    </div>
+</form>
+
+<%- include('../../partials/footerLayout.ejs', { pathLevel : "/"}) %>

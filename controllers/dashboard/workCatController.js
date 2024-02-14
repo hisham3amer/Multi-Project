@@ -9,14 +9,6 @@ const index = (req, res) => {
         });
 }
 
-// const show = (req, res) => {
-//     const id = req.params['id'];
-//     bannerModel.show(id)
-//         .then(oneSlide => {
-//             res.render("dashboard/pages/banner/show", { oneSlide });
-//         });
-// }
-
 const createForm = (req, res) => {
     res.render("dashboard/pages/workCategories/createForm");
 }

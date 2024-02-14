@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                     <th scope="col">Project Title</th>
-                    <th scope="col">Categories</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -22,7 +22,7 @@
                             <%= oneProject.title %>
                         </td>
                         <td>
-                            <%= oneProject.categories%>
+                            <%= oneProject.description%>
                         </td>
                         <td>
                             <div class="d-flex flex-row justify-content-center gap-2">
@@ -36,7 +36,7 @@
                                 <form action=""
                                     class="position-relative">
                                     <button type="button" data-bs-toggle="modal" id="deleteButton" data-bs-target="#deleteModal_<%= oneProject.id %>" class="btn btn-danger btn-small">
-                                        <i class="bi bi-person-x"></i>
+                                        <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </form>
                             </div>

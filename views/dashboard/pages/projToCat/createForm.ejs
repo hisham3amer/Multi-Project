@@ -1,0 +1,41 @@
+<%- include('../../partials/headerLayout.ejs', {pageName: "projToCat", pageTitle: "Add Relationship", pathLevel: "/"}) %>
+
+<div class="col ms-3 mt-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/dashboard/workCategories">Project to Cat</a></li>
+            <li class="breadcrumb-item active">+ New Relationship</li>
+        </ol>
+    </nav>
+</div>
+<form action="/dashboard/projToCat/createForm/store" method="post" enctype="application/x-www-form-urlencoded" class="mx-4">
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="title">Project Title</label>
+            <select name="title" id="title" required class="form-select" aria-label="Default select example">
+                <option selected disabled>Select Project</option>
+                <% workproj.forEach(oneProject => { %>
+                    <option value="<%= oneProject.projectId %>"><%= oneProject.title %></option>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="catName">Project Category</label>
+            <select name="catName" id="catName" required class="form-select" aria-label="Default select example">
+                <option selected disabled>Select Category</option>
+                <% workcat.forEach(onecategory => { %>
+                    <option value="<%= onecategory.categoryId %>"><%= onecategory.catName %></option>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group mb-4">
+        <button type="submit" class="btn btn-primary">Add Relationship</button>
+    </div>
+</form>
+
+<%- include('../../partials/footerLayout.ejs', { pathLevel : "/"}) %>

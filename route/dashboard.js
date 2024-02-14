@@ -8,6 +8,7 @@ const bannerController = require('../controllers/dashboard/bannerController');
 const contactformController = require('../controllers/dashboard/contactformController');
 const workCatController = require('../controllers/dashboard/workCatController');
 const projectsController = require('../controllers/dashboard/projectsController');
+const projToCatController = require('../controllers/dashboard/projToCatController');
 /* -------------- parse of form ------------------- */
 app.use(express.json());
 app.use(express.urlencoded({
@@ -142,5 +143,26 @@ dashboardRouter.put('/dashboard/projects/updateForm/update/:id', upload.single("
 dashboardRouter.delete('/dashboard/projects/destroy/:id', (req, res) => {
     projectsController.destroy(req, res);
 });
+
+/* ------------------------------- */
+
+
+dashboardRouter.get('/dashboard/projToCat', (req, res) => {
+    projToCatController.index(req, res);
+});
+
+dashboardRouter.get('/dashboard/projToCat/createForm', (req, res) => {
+    projToCatController.createForm(req, res);
+});
+dashboardRouter.post('/dashboard/projToCat/createForm/store', (req, res) => {
+    projToCatController.store(req, res);
+});
+dashboardRouter.get('/dashboard/projToCat/updateForm/:relId', projToCatController.updateForm);
+dashboardRouter.put('/dashboard/projToCat/updateForm/update/:relId', projToCatController.update);
+
+dashboardRouter.delete('/dashboard/projToCat/destroy/:relId', (req, res) => {
+    projToCatController.destroy(req, res);
+});
+
 
 module.exports = dashboardRouter;
